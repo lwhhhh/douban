@@ -28,10 +28,10 @@ type MovieList struct {
 func SerachMovie(name string, strict bool) (*MovieList, error) {
 	url := RemoteAddr + SerachMovieAPI + name
 	resp, err := http.Get(url)
-	defer resp.Body.Close()
 	if err != nil {
 		return nil, err
 	}
+	defer resp.Body.Close()
 	movieList := MovieList{}
 	body, err := ioutil.ReadAll(resp.Body)
 	json.Unmarshal(body, &movieList)
@@ -50,12 +50,14 @@ func SerachMovie(name string, strict bool) (*MovieList, error) {
 func MovieInfo(objId string) (*Movie, error) {
 	url := RemoteAddr + MovieInfoAPI + objId
 	resp, err := http.Get(url)
+	if resp != nil {
+		defer resp.Body.Close()
+	}
 	if err != nil {
 		return nil, err
 	}
 	movie := Movie{}
 	body, err := ioutil.ReadAll(resp.Body)
 	json.Unmarshal(body, &movie)
-	defer resp.Body.Close()
 	return &movie, nil
 }
