@@ -41,7 +41,7 @@ func SerachMovie(name string, strict bool) (*MovieList, error) {
     newMovieList := MovieList{[]Movie{}}
     for _, mv := range movieList.Subjects {
         if mv.Title == name {
-            newMovieList.Subjects = append(newMovieList, mv)
+            newMovieList.Subjects = append(newMovieList.Subjects, mv)
         }
     }
     return &newMovieList, nil
