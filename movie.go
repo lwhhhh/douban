@@ -3,7 +3,6 @@ package douban
 import (
     "net/http"
     "encoding/json"
-    "log"
     "io/ioutil"
 )
 
