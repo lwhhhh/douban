@@ -1,12 +1,14 @@
 package main
 
 import (
-    "douban"
     "fmt"
+    "log"
 )
 
 func main() {
-    douban.SerachMovie("硅谷")
-    movie := douban.MovieInfo("1764796")
-    fmt.Println(movie)
+    movieList, err := SerachMovie("硅谷", true)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(movieList)
 }
